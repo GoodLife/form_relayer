@@ -2,6 +2,8 @@
 
 Makes it easier to relay received POST params in current form for further POSTing. This is ideal if you want to insert an intermediate page during POSTing, such as an order confirmation page.
 
+![](https://github.com/GoodLife/form_relayer/blob/master/explain.png)
+
 ## Installation
 
 Add this line to your application's Gemfile:
