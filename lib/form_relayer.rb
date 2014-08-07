@@ -3,12 +3,12 @@ require "form_relayer/version"
 module FormRelayer
   module ViewHelper
     def relay_received_post_params
-      tags = []
-
-      raw_params= Rack::Utils.parse_query(request.raw_post)
+      raw_params = Rack::Utils.parse_query(request.raw_post)
       raw_params.delete('utf8')
       raw_params.delete('authenticity_token')
-      raw_params.each do |name, value|
+
+      tags = raw_params.inject([]) do |tags, params|
+        name, value = params
         tags << hidden_field_tag(name, value)
       end
 

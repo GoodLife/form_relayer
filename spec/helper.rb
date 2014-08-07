@@ -1,21 +1,10 @@
-require 'rubygems'
+require 'form_relayer'
+require 'rspec'
 
-begin
-  require 'bundler'
-rescue LoadError => e
-  STDERR.puts e.message
-  STDERR.puts "Run `gem install bundler` to install Bundler."
-  exit e.status_code
+RSpec.configure do |config|
+  config.mock_framework = :mocha
 end
 
-begin
-  Bundler.setup(:default, :development, :test)
-rescue Bundler::BundlerError => e
-  STDERR.puts e.message
-  STDERR.puts "Run `bundle install` to install missing gems."
-  exit e.status_code
+def stub_view post_params
+  view.stubs(:request).returns(mock('request', raw_post: post_params))
 end
-
-require 'minitest/autorun'
-require 'minitest/spec'
-require "mocha/mini_test"
